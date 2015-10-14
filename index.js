@@ -1,23 +1,19 @@
 var Repository = require('nodegit').Repository;
 var Diff = require('nodegit').Diff;
 var invert = require('lodash.invert');
+var execSync = require('execSync'); // TODO: use child_process.execSync once we get to node 4
 module.exports = function (options) {
     this._options = options || {};
 };
 module.exports.prototype = {
     apply: function (kesselrun) {
         kesselrun.plugin('reduce-unglobbed-jasmine-specs', function (specFiles) {
-            return Repository.open(this._options.path || process.cwd()).then(function (repository) {
-                return Diff.indexToWorkdir(repository, null, {flags: Diff.FORMAT.NAME_ONLY});
-            }).then(function (diff) {
-                return diff.patches();
-            }).then(function (patches) {
-                var specFileMap = invert(specFiles);
-                return patches.map(function (patch) {
-                    return patch.newFile().path();
-                }).filter(function (newFile) {
-                    return !!specFileMap[newFile];
-                });
+            var specFileMap = invert(specFiles);
+            return execSync.exec('git diff --name-only', {
+                cwd: this._options.cwd || process.cwd(),
+                encoding: 'utf8'
+            }).stdout.trim().split("\n").filter(function (newFile) {
+                return !!specFileMap[newFile];
             });
         }.bind(this));
     }
