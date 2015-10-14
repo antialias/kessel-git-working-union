@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "execSync": "^1.0.2",
+    "lodash.assign": "^3.2.0",
     "lodash.invert": "^3.0.1"
   },
   "devDependencies": {
