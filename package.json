@@ -1,0 +1,21 @@
+{
+  "name": "kessel-git-working-union",
+  "version": "1.0.0",
+  "description": "kessel plugin that unions the specfiles with the unstaged changed files in your git working directory",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha",
+    "test-watch": "node node_modules/mocha/bin/mocha --watch"
+  },
+  "author": "Thomas Hallock",
+  "license": "ISC",
+  "dependencies": {
+    "lodash.invert": "^3.0.1",
+    "nodegit": "^0.5.0"
+  },
+  "devDependencies": {
+    "bluebird": "^2.10.2",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1"
+  }
+}
