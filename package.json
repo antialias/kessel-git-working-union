@@ -1,6 +1,6 @@
 {
   "name": "kessel-git-working-union",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "kessel plugin that unions the specfiles with the unstaged changed files in your git working directory",
   "main": "index.js",
   "scripts": {
