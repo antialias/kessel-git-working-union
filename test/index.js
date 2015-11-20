@@ -1,6 +1,6 @@
 var Repository = require('nodegit').Repository;
 var Diff = require('nodegit').Diff;
-var execSync = require('execSync'); // TODO: use child_process.execSync once we get to node 4
+var execSync = require('child_process').execSync;
 var sinon = require('sinon');
 var WorkingUnion = require('../');
 var assert = require('assert');

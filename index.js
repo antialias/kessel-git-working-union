@@ -1,7 +1,7 @@
 var path = require('path');
 var invert = require('lodash.invert');
 var assign = require('lodash.assign');
-var execSync = require('execSync'); // TODO: use child_process.execSync once we get to node 4
+var execSync = require('child_process').execSync;
 module.exports = function (options) {
     this._options = options || {};
 };
