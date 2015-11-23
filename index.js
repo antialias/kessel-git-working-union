@@ -1,7 +1,7 @@
 var path = require('path');
 var invert = require('lodash.invert');
 var assign = require('lodash.assign');
-var execSync = require('child_process').execSync;
+var childProcess = require('child_process');
 module.exports = function (options) {
     this._options = options || {};
 };
@@ -12,7 +12,7 @@ module.exports.prototype = {
             var oldCwd = process.cwd();
             var dirtySpecFiles;
             process.chdir(this._options.cwd || process.cwd());
-            var dirtyFileMap = invert(execSync.exec('git diff --name-only').stdout.trim().split("\n"));
+            var dirtyFileMap = invert(childProcess.execSync('git diff --name-only').toString().trim().split("\n"));
             dirtySpecFiles = specFiles.filter(function (specFile) {
                 return !!dirtyFileMap[path.join(pathFromRoot, kesselrun.jasmineConfig.spec_dir, specFile)];
             }.bind(this));
@@ -21,6 +21,6 @@ module.exports.prototype = {
         }.bind(this));
     },
     _pathFromGitRoot: function () {
-        return path.relative(execSync.exec('git rev-parse --show-toplevel').stdout.trim(), process.cwd());
+        return path.relative(childProcess.execSync('git rev-parse --show-toplevel').toString().trim(), process.cwd());
     }
 };
