@@ -11,10 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "lodash.assign": "^3.2.0",
-    "lodash.invert": "^3.0.1"
+    "lodash.invert": "^3.0.1",
+    "sync-exec": "^0.6.2"
   },
   "devDependencies": {
     "mocha": "^2.3.3",
+    "proxyquire": "^1.7.3",
     "sinon": "^1.17.1"
   }
 }
